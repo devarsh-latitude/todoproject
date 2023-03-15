@@ -34,3 +34,12 @@ def delete_task(request,pk):
 #     deleted_tasks.append(task)
 #     return redirect('index')
 #     # return render(request,'index.html',{'deleted_tasks':deleted_tasks})
+
+def completed_task(request,pk):
+    task=Task.objects.get(id=pk)
+    if task.completed == False:
+        task.completed = True
+    else:
+        task.completed = False
+    task.save()
+    return redirect('index')

@@ -20,7 +20,7 @@ Tasks -
             {% if task.completed == False %}
             <li>
                 {{task.title}}
-            | <a href="{% url "update_task" task.id %}">Update</a> | <a href="{% url "delete_task" task.id %}">Delete</a> 
+            | <a href="{% url "update_task" task.id %}">Update</a> | <a href="{% url "completed_task" task.id %}">Tick</a> | <a href="{% url "delete_task" task.id %}">Delete</a> 
         </li>
             {% endif %}
         
@@ -33,7 +33,7 @@ Tasks -
             {% if task.completed == True %}
             <li>
                 <strike>{{task.title}} </strike>
-        | <a href="{% url "update_task" task.id %}">Update</a> | <a href="{% url "delete_task" task.id %}">Delete</a> 
+        | <a href="{% url "update_task" task.id %}">Update</a> | <a href="{% url "completed_task" task.id %}">UnTick</a> |<a href="{% url "delete_task" task.id %}">Delete</a> 
     </li>
         {% endif %}
         
