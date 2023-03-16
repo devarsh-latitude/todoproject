@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Tasks - 
+{% endblock title %}
+
+{% block content %}
+    <!-- <h1>Hello, world!</h1> -->
+
+    <form method="post">
+    {% csrf_token %}
+
+        {{task_form}} <!-- variable-->
+
+        <button type="submit">SUBMIT</button>
+    </form>
+    <h4>TODO TASKS</h4>
+    <ul>
+        {% for task in tasks %}
+            {% if task.completed == False %}
+            <li>
+                {{task.title}}
+            | <a href="{% url "update_task" task.id %}">Update</a> | <a href="{% url "completed_task" task.id %}">Tick</a> | <a href="{% url "delete_task" task.id %}">Delete</a> 
+        </li>
+            {% endif %}
+        
+        {% endfor %}
+    </ul>
+    <h4>Completed TASKS</h4>
+
+    <ul>
+        {% for task in tasks %}
+            {% if task.completed == True %}
+            <li>
+                <strike>{{task.title}} </strike>
+        | <a href="{% url "update_task" task.id %}">Update</a> | <a href="{% url "completed_task" task.id %}">UnTick</a> |<a href="{% url "delete_task" task.id %}">Delete</a> 
+    </li>
+        {% endif %}
+        
+        {% endfor %}
+    </ul>
+ 
+
+{% endblock content %}
